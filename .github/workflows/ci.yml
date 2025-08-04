@@ -1,0 +1,28 @@
+name: CI - react-build
+
+on:
+  push:
+    branches: ["main"]
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      
+      - name: Setup Node.js 
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      
+      - name: Install pnpm
+        run: npm i -g pnpm
+      
+      - name: install dependencies
+        run: pnpm install
+
+      - name: build the project
+        run: pnpm run build
